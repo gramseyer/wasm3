@@ -180,6 +180,7 @@ d_m3ErrorConst  (trapAbort,                     "[trap] program called abort")
 d_m3ErrorConst  (trapUnreachable,               "[trap] unreachable executed")
 d_m3ErrorConst  (trapStackOverflow,             "[trap] stack overflow")
 d_m3ErrorConst  (trapHostEnvError,              "[trap] host environment error")
+d_m3ErrorConst  (unrecoverableSystemError,      "[trap] unrecoverable system error")
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
