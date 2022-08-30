@@ -16,10 +16,6 @@
 #   define d_m3CodePageAlignSize                32*1024
 # endif
 
-# ifndef d_m3EnableCodePageRefCounting
-#   define d_m3EnableCodePageRefCounting        0
-# endif
-
 # ifndef d_m3MaxFunctionStackHeight
 #   define d_m3MaxFunctionStackHeight           2000    // max: 32768
 # endif
@@ -82,6 +78,10 @@
 
 # ifndef d_m3EnableOpTracing
 #   define d_m3EnableOpTracing                  0       // only works with DEBUG
+# endif
+
+# ifndef d_m3EnableWasiTracing
+#  define d_m3EnableWasiTracing                 0
 # endif
 
 # ifndef d_m3EnableStrace
@@ -150,5 +150,7 @@
 # ifndef d_m3SkipMemoryBoundsCheck
 #   define d_m3SkipMemoryBoundsCheck            0       // skip memory bounds checks
 # endif
+
+#define d_m3EnableCodePageRefCounting           0       // not supported currently
 
 #endif // m3_config_h

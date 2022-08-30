@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.11)
 
 # Detect WasiEnv
-if(DEFINED ENV{WASI_CC})
+if(DEFINED ENV{WASI_CC} OR DEFINED WASI_SDK_PREFIX)
   set(WASIENV           1)
 endif()
 
@@ -47,6 +47,10 @@ if(CLANG OR CLANG_SUFFIX)
     set(CMAKE_C_FLAGS    "${CMAKE_C_FLAGS} -fsanitize=fuzzer,address")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=fuzzer,address")
   endif()
+endif()
+
+if(WASIENV)
+  set(OUT_FILE           "wasm3.wasm")
 endif()
 
 if(CLANG_CL)
@@ -128,7 +132,7 @@ elseif(WASIENV)
   #-flto -Wl,--lto-O3
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,stack-size=8388608")
 
-elseif(WIN32 AND NOT MINGW)
+elseif(MSVC OR CMAKE_C_COMPILER_FRONTEND_VARIANT MATCHES "MSVC")
 
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Dd_m3HasTracer -D_CRT_SECURE_NO_WARNINGS /WX- /diagnostics:column")
 
@@ -223,3 +227,9 @@ message("Debug flags:   ${CMAKE_C_FLAGS_DEBUG}")
 message("Release flags: ${CMAKE_C_FLAGS_RELEASE}")
 
 message("----")
+
+# Install
+
+include(GNUInstallDirs)
+
+install(TARGETS ${OUT_FILE} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
