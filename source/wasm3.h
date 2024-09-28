@@ -184,9 +184,12 @@ d_m3ErrorConst  (trapExit,                      "[trap] program called exit")
 d_m3ErrorConst  (trapAbort,                     "[trap] program called abort")
 d_m3ErrorConst  (trapUnreachable,               "[trap] unreachable executed")
 d_m3ErrorConst  (trapStackOverflow,             "[trap] stack overflow")
+
+// specific to wasm-api usage
 d_m3ErrorConst  (trapHostEnvError,              "[trap] host environment error")
 d_m3ErrorConst  (unrecoverableSystemError,      "[trap] unrecoverable system error")
-
+d_m3ErrorConst  (outOfGasError,                 "[trap] gas limit exceeded")
+d_m3ErrorConst  (returnSuccessError,            "[trap] returning from wasm invocation")
 
 //-------------------------------------------------------------------------------------------------------------------------------
 //  configuration, can be found in m3_config.h, m3_config_platforms.h, m3_core.h)
