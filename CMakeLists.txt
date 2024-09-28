@@ -176,7 +176,7 @@ else()
   if(BUILD_NATIVE)
     if(APPLE AND CMAKE_C_COMPILER_ID MATCHES "Clang" AND CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64")
       set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mcpu=native")
-    else()
+    elseif(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "x86_64")
       set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
     endif()
   endif()
@@ -198,8 +198,8 @@ elseif(BUILD_WASI MATCHES "uvwasi")
   include(FetchContent)
   FetchContent_Declare(
     uvwasi
-    GIT_REPOSITORY https://github.com/nodejs/uvwasi.git
-    GIT_TAG b599542f7ce001e04cdff9db82b05fee96bb3332
+    GIT_REPOSITORY  https://github.com/nodejs/uvwasi.git
+    GIT_TAG         v0.0.18
   )
 
   FetchContent_GetProperties(uvwasi)

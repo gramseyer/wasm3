@@ -14,3 +14,4 @@ __pycache__/
 *.o
 source/.deps/
 source/.dirstamp
+*zig-*/
